@@ -15,6 +15,20 @@ TETHR explores a Bluetooth-based demo payment workflow on Android and stores tra
 - PostgreSQL storage for backend records
 - Transaction status tracking and duplicate-sync handling
 
+## Screenshots
+
+### Android app — customer and merchant demo
+
+![TETHR running on two Android emulators](Screenshot%202026-10-19%20140307.png)
+
+### Local transaction database
+
+![Room Database Inspector showing wallet transactions](Screenshot%202026-10-19%20140328.png)
+
+### Backend health check
+
+![FastAPI health endpoint returning HTTP 200 and status ok](Screenshot%202026-10-19%20140544.png)
+
 ## Tech Stack
 
 | Component | Technology |
