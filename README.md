@@ -25,9 +25,9 @@ TETHR explores a Bluetooth-based demo payment workflow on Android and stores tra
 
 ![Room Database Inspector showing wallet transactions](Screenshot%202026-10-19%20140328.png)
 
-### Backend health check
+### Backend API and server logs
 
-![FastAPI health endpoint returning HTTP 200 and status ok](Screenshot%202026-10-19%20140544.png)
+![TETHR FastAPI Swagger UI and Uvicorn terminal showing successful API requests](Screenshot%202026-10-19%20140735.png)
 
 ## Tech Stack
 
