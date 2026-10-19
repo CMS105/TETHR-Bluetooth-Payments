@@ -1,0 +1,39 @@
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Android / Gradle generated files and local configuration
+.gradle/
+.kotlin/
+**/build/
+.idea/
+local.properties
+*.iml
+
+# Local databases and backups
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.backup
+
+# Private keys and signing files
+*.pem
+*.key
+*.jks
+*.keystore
+
+# OS/editor files
+.DS_Store
+Thumbs.db
