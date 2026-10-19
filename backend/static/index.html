@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluetooth UPI</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 25px;
+        }
+        .card {
+            background: white;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px #00000010;
+        }
+        h1 {
+            color: #2563eb;
+        }
+        input, button {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        #result {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bluetooth UPI</h1>
+        <p>Simple demo wallet</p>
+        <div class="card">
+            <h2>Check Balance</h2>
+            <input id="balanceId" placeholder="Enter your user ID">
+            <button onclick="checkBalance()">Check Balance</button>
+        </div>
+        <div class="card">
+            <h2>Send Money</h2>
+            <input id="customerId" placeholder="Your customer ID">
+            <input id="merchantId" placeholder="Merchant ID">
+            <input id="amount" type="number" placeholder="Amount in ₹">
+            <input id="description" placeholder="Payment description">
+            <button onclick="sendPayment()">Pay Now</button>
+        </div>
+        <div class="card">
+            <h2>Result</h2>
+            <pre id="result">Your result will appear here.</pre>
+        </div>
+    </div>
+    <script>
+        async function checkBalance() {
+            const userId = document.getElementById("balanceId").value.trim();
+            if (!userId) {
+                showResult("Please enter your user ID.");
+                return;
+            }
+            try {
+                const response = await fetch(
+                    `/balance?user_id=${encodeURIComponent(userId)}`
+                );
+                const data = await response.json();
+                showResult(JSON.stringify(data, null, 2));
+            } catch (error) {
+                showResult("Could not connect to the server.");
+            }
+        }
+        async function sendPayment() {
+            const customerId = document.getElementById("customerId").value.trim();
+            const merchantId = document.getElementById("merchantId").value.trim();
+            const amount = document.getElementById("amount").value;
+            const description = document.getElementById("description").value.trim();
+            if (!customerId || !merchantId || !amount) {
+                showResult("Please fill in the customer ID, merchant ID, and amount.");
+                return;
+            }
+            const params = new URLSearchParams({
+                customer_id: customerId,
+                merchant_id: merchantId,
+                amount: amount,
+                description: description || "Payment"
+            });
+            try {
+                const response = await fetch(`/pay?${params.toString()}`, {
+                    method: "POST"
+                });
+                const data = await response.json();
+                showResult(JSON.stringify(data, null, 2));
+            } catch (error) {
+                showResult("Could not connect to the server.");
+            }
+        }
+        function showResult(message) {
+            document.getElementById("result").textContent = message;
+        }
+    </script>
+</body>
+</html>

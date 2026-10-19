@@ -1,0 +1,20 @@
+# Web API framework used by main.py and main_backup.py
+fastapi==0.143.0
+
+# Object-relational mapper used to access SQLite and PostgreSQL
+SQLAlchemy==2.1.4
+
+# Request and response data validation used by FastAPI
+pydantic==2.14.1
+
+# Development ASGI server for running the FastAPI application
+uvicorn==0.54.0
+
+# PostgreSQL driver used by the DATABASE_URL in main.py
+psycopg[binary]==3.3.6
+
+# Loads the local .env configuration file without hardcoding credentials
+python-dotenv==1.2.4
+
+# Database schema migration tool for the upcoming PostgreSQL migration
+alembic>=1.14,<2.0
